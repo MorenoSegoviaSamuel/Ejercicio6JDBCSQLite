@@ -143,5 +143,25 @@ public  class OperacionesCRUDPilotos {
             throw new RuntimeException(e);
         }
     }
+
+    public static void mostrarClasificacionConstructores(String rutaBaseDatos){
+        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:" + rutaBaseDatos.toString())) {
+            String consultaSQl = "SELECT constructors.name, SUM(results.points) AS puntos " +
+                    "FROM constructors " +
+                    "INNER JOIN drivers ON constructors.constructorid = drivers.constructorid " +
+                    "INNER JOIN results ON drivers.driverid = results.driverid " +
+                    "GROUP BY constructors.name " +
+                    "ORDER BY puntos DESC";
+
+            PreparedStatement consulta = conexion.prepareStatement(consultaSQl);
+            ResultSet resultado = consulta.executeQuery();
+            System.out.println("Clasificación de escuderias: ");
+            while (resultado.next()){
+                System.out.println(resultado.getString("name") + " " + resultado.getInt("puntos"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 

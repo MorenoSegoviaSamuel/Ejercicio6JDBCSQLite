@@ -32,6 +32,9 @@ public class Main {
 
         System.out.println("CLASIFICACIÓN:\n");
         OperacionesCRUDPilotos.MostrarClasificacionPiloto(String.valueOf(rutaBaseDatos));
+
+        System.out.println("CLASIFICACIÓN CONSTRUCTORES:\n");
+        OperacionesCRUDPilotos.mostrarClasificacionConstructores(String.valueOf(rutaBaseDatos));
     }
 
     }
