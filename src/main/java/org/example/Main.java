@@ -1,15 +1,17 @@
 package org.example;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
 
         Path rutaBaseDatos = Path.of("src", "main", "resources", "db", "f12006sqlite.db");
 
-        Piloto p = new Piloto("MRW","Walter","White", "03-09-1975","USA","https://en.wikipedia.org/wiki/Walter_White_%28Breaking_Bad%29");
 
-        //Crear piloto
+        Piloto p = new Piloto("MRW","Walter","White", LocalDate.of(1982,12,20),"USA","https://en.wikipedia.org/wiki/Walter_White_%28Breaking_Bad%29");
+
+
         //OperacionesCRUDPilotos.crearPiloto(String.valueOf(rutaBaseDatos),p);
 
         //Leer piloto
@@ -31,7 +33,7 @@ public class Main {
         OperacionesCRUDPilotos.LeerPilotos(String.valueOf(rutaBaseDatos));
 
         System.out.println("CLASIFICACIÓN:\n");
-        OperacionesCRUDPilotos.MostrarClasificacionPiloto(String.valueOf(rutaBaseDatos));
+        OperacionesCRUDPilotos.mostrarClasificacionPiloto(String.valueOf(rutaBaseDatos));
 
         System.out.println("CLASIFICACIÓN CONSTRUCTORES:\n");
         OperacionesCRUDPilotos.mostrarClasificacionConstructores(String.valueOf(rutaBaseDatos));

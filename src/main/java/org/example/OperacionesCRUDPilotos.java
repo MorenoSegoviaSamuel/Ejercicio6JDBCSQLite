@@ -1,6 +1,7 @@
 package org.example;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public  class OperacionesCRUDPilotos {
 
             ResultSet resultados = consulta.executeQuery();
 
-            p = new Piloto(resultados.getString("code"), resultados.getString("forename"), resultados.getString("surname"), resultados.getString("dob"), resultados.getString("nationality"), resultados.getString("url"));
+            p = new Piloto(resultados.getString("code"), resultados.getString("forename"), resultados.getString("surname"), LocalDate.parse(resultados.getString("dob")), resultados.getString("nationality"), resultados.getString("url"));
 
             System.out.println(p);
             consulta.close();
@@ -59,7 +60,7 @@ public  class OperacionesCRUDPilotos {
             ResultSet resultados = consulta.executeQuery();
 
             while (resultados.next()) {
-                p = new Piloto(resultados.getString("code"), resultados.getString("forename"), resultados.getString("surname"), resultados.getString("dob"), resultados.getString("nationality"), resultados.getString("url"));
+                p = new Piloto(resultados.getString("code"), resultados.getString("forename"), resultados.getString("surname"), LocalDate.parse(resultados.getString("dob")), resultados.getString("nationality"), resultados.getString("url"));
                 listaPilotos.add(p);
             }
 
@@ -79,7 +80,7 @@ public  class OperacionesCRUDPilotos {
             update.setString(1, p.getCode());
             update.setString(2, p.getForename());
             update.setString(3, p.getSurname());
-            update.setString(4, p.getDob());
+            update.setString(4, p.getDob().toString());
             update.setString(5, p.getNationality());
             update.setString(6, p.getUrl());
             update.setInt(7, n);
@@ -118,7 +119,7 @@ public  class OperacionesCRUDPilotos {
 
     }
 
-    public static void MostrarClasificacionPiloto(String path) {
+    public static void mostrarClasificacionPiloto(String path) {
         try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:" + path.toString())) {
             String consultaSQL = "SELECT drivers.driverid, drivers.forename, drivers.surname, SUM(results.points) AS total_points " +
                     "FROM drivers " +

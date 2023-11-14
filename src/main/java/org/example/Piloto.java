@@ -6,11 +6,11 @@ public class Piloto {
     private String code;
     private String forename;
     private String surname;
-    private String dob;
+    private LocalDate dob;
     private String nationality;
     private String url;
 
-    public Piloto(String code, String forename, String surname, String dob, String nationality, String url) {
+    public Piloto(String code, String forename, String surname, LocalDate dob, String nationality, String url) {
         this.code = code;
         this.forename = forename;
         this.surname = surname;
@@ -37,7 +37,7 @@ public class Piloto {
 
 
 
-    public String getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
